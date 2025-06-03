@@ -1,0 +1,132 @@
+/* Custom Dashboard Color Overrides */
+/* Based on original React component palette */
+
+:root {
+  /* Primary Colors - Blue Theme */
+  --custom-primary: #2196f3;
+  --custom-orange: #ff9800;
+  --custom-purple: #7c4dff;
+  --custom-success: #4caf50;
+  --custom-danger: #f44335;
+  --custom-info: #03a9f4;
+  --custom-warning: #ff9800;
+  
+  /* Grays */
+  --custom-dark: #212529;
+  --custom-gray: #6c757d;
+  --custom-gray-light: #e9ecef;
+  --custom-gray-100: #f8f9fa;
+  --custom-gray-200: #e9ecef;
+  --custom-gray-500: #adb5bd;
+  --custom-gray-600: #6c757d;
+  --custom-gray-800: #343a40;
+}
+
+/* Override Bootstrap/Material Dashboard classes with higher specificity */
+body .bg-gradient-primary,
+.card .bg-gradient-primary {
+  background-image: linear-gradient(195deg, #2196f3 0%, #1976d2 100%) !important;
+}
+
+body .bg-primary,
+.card .bg-primary {
+  background-color: var(--custom-primary) !important;
+}
+
+body .text-primary,
+.card .text-primary {
+  color: var(--custom-primary) !important;
+}
+
+body .btn-primary,
+.card .btn-primary {
+  background-color: var(--custom-primary) !important;
+  border-color: var(--custom-primary) !important;
+}
+
+body .btn-success,
+.card .btn-success {
+  background-color: var(--custom-success) !important;
+  border-color: var(--custom-success) !important;
+}
+
+body .text-success,
+.card .text-success,
+.card-body .text-success {
+  color: var(--custom-success) !important;
+}
+
+body .text-danger,
+.card .text-danger,
+.card-body .text-danger {
+  color: var(--custom-danger) !important;
+}
+
+.bg-gradient-success {
+  background-image: linear-gradient(195deg, #4caf50 0%, #388e3c 100%) !important;
+}
+
+.bg-gradient-warning {
+  background-image: linear-gradient(195deg, #ff9800 0%, #f57c00 100%) !important;
+}
+
+.bg-gradient-info {
+  background-image: linear-gradient(195deg, #2196f3 0%, #1976d2 100%) !important;
+}
+
+/* Custom badge colors */
+.badge-orange {
+  background-color: var(--custom-orange);
+  color: white;
+}
+
+.badge-purple {
+  background-color: var(--custom-purple);
+  color: white;
+}
+
+/* Chart-specific colors */
+.chart-pink {
+  color: var(--custom-primary);
+}
+
+.chart-orange {
+  color: var(--custom-orange);
+}
+
+.chart-purple {
+  color: var(--custom-purple);
+}
+
+/* Custom utility classes */
+.bg-custom-primary { background-color: var(--custom-primary) !important; }
+.bg-custom-orange { background-color: var(--custom-orange) !important; }
+.bg-custom-purple { background-color: var(--custom-purple) !important; }
+.text-custom-primary { color: var(--custom-primary) !important; }
+.text-custom-orange { color: var(--custom-orange) !important; }
+.text-custom-purple { color: var(--custom-purple) !important; }
+
+/* Tab customization */
+.nav-tabs .nav-link {
+  color: var(--custom-gray) !important;
+  border-color: transparent !important;
+  background-color: transparent !important;
+}
+
+.nav-tabs .nav-link:hover {
+  color: var(--custom-dark) !important;
+  border-color: transparent !important;
+  background-color: #f8f9fa !important;
+}
+
+.nav-tabs .nav-link.active {
+  color: var(--custom-primary) !important;
+  background-color: #e3f2fd !important;
+  border-bottom: 2px solid var(--custom-primary) !important;
+}
+
+/* Remove default Material Dashboard tab styling */
+body .nav-tabs .nav-link.active,
+body .nav-tabs .nav-link:hover {
+  border-color: transparent transparent var(--custom-primary) transparent !important;
+}
