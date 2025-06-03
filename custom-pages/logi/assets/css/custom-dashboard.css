@@ -130,3 +130,16 @@ body .nav-tabs .nav-link.active,
 body .nav-tabs .nav-link:hover {
   border-color: transparent transparent var(--custom-primary) transparent !important;
 }
+
+/* Fix for chart height issues */
+canvas {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Disable chart animations to prevent growing issue */
+.chart-container {
+  position: relative;
+  height: auto;
+  width: 100%;
+}
