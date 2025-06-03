@@ -123,6 +123,11 @@ The original React component uses a specific color scheme that should be preserv
   - Updated all pink (#e91e63) references to blue (#2196f3)
   - Adjusted purple to #7c4dff for better contrast with blue theme
   - Updated both CSS variables and JavaScript config
+- **2025-01-06 15:25**: Reorganized file structure:
+  - Created `/custom-pages/` directory for custom variations
+  - Moved revenue-forecast.html to `/custom-pages/dashboards/`
+  - Added README.md documenting the custom pages structure
+  - This keeps custom work separate from template examples
 
 ## Customization Best Practices
 
