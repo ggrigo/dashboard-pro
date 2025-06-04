@@ -1,0 +1,546 @@
+{
+  "calendar": {
+    "W+1": [
+      { "date": "2025-06-02", "fiscal_week": "W+1", "day_of_week": 1, "day_name": "Monday", "is_weekend": false, "events": [] },
+      { "date": "2025-06-03", "fiscal_week": "W+1", "day_of_week": 2, "day_name": "Tuesday", "is_weekend": false, "events": [] },
+      { "date": "2025-06-04", "fiscal_week": "W+1", "day_of_week": 3, "day_name": "Wednesday", "is_weekend": false, "events": [{"name": "WWDC 2025", "type": "conference", "impact": "high"}] },
+      { "date": "2025-06-05", "fiscal_week": "W+1", "day_of_week": 4, "day_name": "Thursday", "is_weekend": false, "events": [{"name": "WWDC 2025", "type": "conference", "impact": "high"}] },
+      { "date": "2025-06-06", "fiscal_week": "W+1", "day_of_week": 5, "day_name": "Friday", "is_weekend": false, "events": [] },
+      { "date": "2025-06-07", "fiscal_week": "W+1", "day_of_week": 6, "day_name": "Saturday", "is_weekend": true, "events": [] },
+      { "date": "2025-06-08", "fiscal_week": "W+1", "day_of_week": 7, "day_name": "Sunday", "is_weekend": true, "events": [] }
+    ],
+    "W+2": [
+      { "date": "2025-06-09", "fiscal_week": "W+2", "day_of_week": 1, "day_name": "Monday", "is_weekend": false, "events": [] },
+      { "date": "2025-06-10", "fiscal_week": "W+2", "day_of_week": 2, "day_name": "Tuesday", "is_weekend": false, "events": [] },
+      { "date": "2025-06-11", "fiscal_week": "W+2", "day_of_week": 3, "day_name": "Wednesday", "is_weekend": false, "events": [] },
+      { "date": "2025-06-12", "fiscal_week": "W+2", "day_of_week": 4, "day_name": "Thursday", "is_weekend": false, "events": [] },
+      { "date": "2025-06-13", "fiscal_week": "W+2", "day_of_week": 5, "day_name": "Friday", "is_weekend": false, "events": [] },
+      { "date": "2025-06-14", "fiscal_week": "W+2", "day_of_week": 6, "day_name": "Saturday", "is_weekend": true, "events": [] },
+      { "date": "2025-06-15", "fiscal_week": "W+2", "day_of_week": 7, "day_name": "Sunday", "is_weekend": true, "events": [] }
+    ],
+    "W+5": [
+      { "date": "2025-07-04", "fiscal_week": "W+5", "day_of_week": 5, "day_name": "Friday", "is_weekend": false, "events": [{"name": "Independence Day", "type": "holiday", "impact": "negative"}] }
+    ]
+  },
+  "forecastData": {
+    "W+1": {
+      "weekRange": "Jun 2 - Jun 8, 2025",
+      "revenue": 18745000,
+      "change": "+5.2%",
+      "vsTypin": "+3.8%",
+      "categories": [
+        { "name": "MX Series", "revenue": 4688000, "change": "+8.2%" },
+        { "name": "G Series Gaming", "revenue": 5625000, "change": "+12.5%" },
+        { "name": "Business Solutions", "revenue": 3754000, "change": "-2.1%" },
+        { "name": "Webcams", "revenue": 2810000, "change": "+4.7%" },
+        { "name": "Other", "revenue": 1868000, "change": "-1.3%" }
+      ],
+      "daily": [
+        { "day": "Mon", "date": "Jun 2", "revenue": 2385000, "special": null },
+        { "day": "Tue", "date": "Jun 3", "revenue": 2450000, "special": null },
+        { "day": "Wed", "date": "Jun 4", "revenue": 3251000, "special": "WWDC 2025" },
+        { "day": "Thu", "date": "Jun 5", "revenue": 3427000, "special": "WWDC 2025" },
+        { "day": "Fri", "date": "Jun 6", "revenue": 3165000, "special": null },
+        { "day": "Sat", "date": "Jun 7", "revenue": 2513000, "special": null },
+        { "day": "Sun", "date": "Jun 8", "revenue": 2472000, "special": null }
+      ]
+    },
+    "W+2": {
+      "weekRange": "Jun 9 - Jun 15, 2025",
+      "revenue": 16900000,
+      "change": "-9.9%",
+      "vsTypin": "+1.2%",
+      "categories": [
+        { "name": "MX Series", "revenue": 4210000, "change": "-10.2%" },
+        { "name": "G Series Gaming", "revenue": 4980000, "change": "-11.4%" },
+        { "name": "Business Solutions", "revenue": 3580000, "change": "-4.5%" },
+        { "name": "Webcams", "revenue": 2530000, "change": "-10.0%" },
+        { "name": "Other", "revenue": 1600000, "change": "-14.4%" }
+      ],
+      "daily": [
+        { "day": "Mon", "date": "Jun 9", "revenue": 2150000, "special": null },
+        { "day": "Tue", "date": "Jun 10", "revenue": 2330000, "special": null },
+        { "day": "Wed", "date": "Jun 11", "revenue": 2685000, "special": null },
+        { "day": "Thu", "date": "Jun 12", "revenue": 3045000, "special": null },
+        { "day": "Fri", "date": "Jun 13", "revenue": 3225000, "special": null },
+        { "day": "Sat", "date": "Jun 14", "revenue": 2240000, "special": null },
+        { "day": "Sun", "date": "Jun 15", "revenue": 2225000, "special": null }
+      ]
+    },
+    "W+3": {
+      "weekRange": "Jun 16 - Jun 22, 2025",
+      "revenue": 17800000,
+      "change": "+5.3%",
+      "vsTypin": "+2.9%",
+      "categories": [
+        { "name": "MX Series", "revenue": 4450000, "change": "+5.7%" },
+        { "name": "G Series Gaming", "revenue": 5250000, "change": "+5.4%" },
+        { "name": "Business Solutions", "revenue": 3700000, "change": "+3.4%" },
+        { "name": "Webcams", "revenue": 2650000, "change": "+4.7%" },
+        { "name": "Other", "revenue": 1750000, "change": "+9.4%" }
+      ],
+      "daily": []
+    },
+    "W+4": {
+      "weekRange": "Jun 23 - Jun 29, 2025",
+      "revenue": 19200000,
+      "change": "+7.9%",
+      "vsTypin": "+5.1%",
+      "categories": [
+        { "name": "MX Series", "revenue": 4800000, "change": "+7.9%" },
+        { "name": "G Series Gaming", "revenue": 5680000, "change": "+8.2%" },
+        { "name": "Business Solutions", "revenue": 4050000, "change": "+9.5%" },
+        { "name": "Webcams", "revenue": 2800000, "change": "+5.7%" },
+        { "name": "Other", "revenue": 1870000, "change": "+6.9%" }
+      ],
+      "daily": []
+    },
+    "W+5": {
+      "weekRange": "Jun 30 - Jul 6, 2025",
+      "revenue": 16500000,
+      "change": "-14.1%",
+      "vsTypin": "+0.7%",
+      "categories": [
+        { "name": "MX Series", "revenue": 4120000, "change": "-14.2%" },
+        { "name": "G Series Gaming", "revenue": 4950000, "change": "-12.9%" },
+        { "name": "Business Solutions", "revenue": 3200000, "change": "-21.0%" },
+        { "name": "Webcams", "revenue": 2450000, "change": "-12.5%" },
+        { "name": "Other", "revenue": 1780000, "change": "-4.8%" }
+      ],
+      "daily": []
+    }
+  },
+  "categoryDailyData": {
+    "MX Series": {
+      "W+1": {
+        "daily": [
+          { "day": "Mon", "date": "Jun 2", "revenue": 578000, "special": null },
+          { "day": "Tue", "date": "Jun 3", "revenue": 589000, "special": null },
+          { "day": "Wed", "date": "Jun 4", "revenue": 847000, "special": "WWDC 2025" },
+          { "day": "Thu", "date": "Jun 5", "revenue": 892000, "special": "WWDC 2025" },
+          { "day": "Fri", "date": "Jun 6", "revenue": 936000, "special": null },
+          { "day": "Sat", "date": "Jun 7", "revenue": 487000, "special": null },
+          { "day": "Sun", "date": "Jun 8", "revenue": 479000, "special": null }
+        ],
+        "metrics": {
+          "avgDailyRevenue": 668571,
+          "peakDay": "Friday",
+          "weekendImpact": "-16.7%",
+          "topProducts": ["MX MASTER 3S", "MX KEYS", "MX ANYWHERE 3"],
+          "conversionRate": "3.2%",
+          "eventLiftPct": 45.8
+        }
+      }
+    },
+    "G Series Gaming": {
+      "W+1": {
+        "daily": [
+          { "day": "Mon", "date": "Jun 2", "revenue": 723000, "special": null },
+          { "day": "Tue", "date": "Jun 3", "revenue": 745000, "special": null },
+          { "day": "Wed", "date": "Jun 4", "revenue": 962000, "special": "WWDC 2025" },
+          { "day": "Thu", "date": "Jun 5", "revenue": 1015000, "special": "WWDC 2025" },
+          { "day": "Fri", "date": "Jun 6", "revenue": 893000, "special": null },
+          { "day": "Sat", "date": "Jun 7", "revenue": 812000, "special": null },
+          { "day": "Sun", "date": "Jun 8", "revenue": 798000, "special": null }
+        ],
+        "metrics": {
+          "avgDailyRevenue": 803571,
+          "peakDay": "Thursday",
+          "weekendImpact": "+8.3%",
+          "topProducts": ["G PRO X SUPERLIGHT", "G915 TKL", "G733"],
+          "conversionRate": "2.8%",
+          "eventLiftPct": 42.1
+        }
+      }
+    },
+    "Business Solutions": {
+      "W+1": {
+        "daily": [
+          { "day": "Mon", "date": "Jun 2", "revenue": 482000, "special": null },
+          { "day": "Tue", "date": "Jun 3", "revenue": 496000, "special": null },
+          { "day": "Wed", "date": "Jun 4", "revenue": 641000, "special": "WWDC 2025" },
+          { "day": "Thu", "date": "Jun 5", "revenue": 676000, "special": "WWDC 2025" },
+          { "day": "Fri", "date": "Jun 6", "revenue": 594000, "special": null },
+          { "day": "Sat", "date": "Jun 7", "revenue": 540000, "special": null },
+          { "day": "Sun", "date": "Jun 8", "revenue": 531000, "special": null }
+        ],
+        "metrics": {
+          "avgDailyRevenue": 535714,
+          "peakDay": "Thursday",
+          "weekendImpact": "-28.4%",
+          "topProducts": ["RALLY BAR", "MEETUP", "ZONE WIRELESS"],
+          "conversionRate": "4.1%",
+          "eventLiftPct": 25.2
+        }
+      }
+    },
+    "Webcams": {
+      "W+1": {
+        "daily": [
+          { "day": "Mon", "date": "Jun 2", "revenue": 361000, "special": null },
+          { "day": "Tue", "date": "Jun 3", "revenue": 372000, "special": null },
+          { "day": "Wed", "date": "Jun 4", "revenue": 481000, "special": "WWDC 2025" },
+          { "day": "Thu", "date": "Jun 5", "revenue": 507000, "special": "WWDC 2025" },
+          { "day": "Fri", "date": "Jun 6", "revenue": 446000, "special": null },
+          { "day": "Sat", "date": "Jun 7", "revenue": 405000, "special": null },
+          { "day": "Sun", "date": "Jun 8", "revenue": 399000, "special": null }
+        ],
+        "metrics": {
+          "avgDailyRevenue": 401429,
+          "peakDay": "Thursday",
+          "weekendImpact": "-12.1%",
+          "topProducts": ["BRIO 4K", "C920s HD PRO", "STREAMCAM"],
+          "conversionRate": "2.4%",
+          "eventLiftPct": 33.5
+        }
+      }
+    },
+    "Other": {
+      "W+1": {
+        "daily": [
+          { "day": "Mon", "date": "Jun 2", "revenue": 241000, "special": null },
+          { "day": "Tue", "date": "Jun 3", "revenue": 248000, "special": null },
+          { "day": "Wed", "date": "Jun 4", "revenue": 320000, "special": "WWDC 2025" },
+          { "day": "Thu", "date": "Jun 5", "revenue": 337000, "special": "WWDC 2025" },
+          { "day": "Fri", "date": "Jun 6", "revenue": 296000, "special": null },
+          { "day": "Sat", "date": "Jun 7", "revenue": 269000, "special": null },
+          { "day": "Sun", "date": "Jun 8", "revenue": 265000, "special": null }
+        ],
+        "metrics": {
+          "avgDailyRevenue": 267857,
+          "peakDay": "Thursday",
+          "weekendImpact": "-5.2%",
+          "topProducts": ["CRAYON", "SPOTLIGHT", "COMBO TOUCH"],
+          "conversionRate": "1.9%",
+          "eventLiftPct": 28.9
+        }
+      }
+    }
+  },
+  "weeklyProgressData": [
+    { "week": "W-4", "revenue": 17100000, "type": "historical", "actual": 17100000 },
+    { "week": "W-3", "revenue": 17500000, "type": "historical", "actual": 17500000 },
+    { "week": "W-2", "revenue": 17700000, "type": "historical", "actual": 17625000 },
+    { "week": "W-1", "revenue": 17750000, "type": "historical", "actual": 17735000 },
+    { "week": "W+1", "revenue": 18745000, "type": "forecast" },
+    { "week": "W+2", "revenue": 16900000, "type": "forecast" },
+    { "week": "W+3", "revenue": 17800000, "type": "forecast" },
+    { "week": "W+4", "revenue": 19200000, "type": "forecast" },
+    { "week": "W+5", "revenue": 16500000, "type": "forecast" }
+  ],
+  "sessionData": {
+    "MX Series": {
+      "avgDailySessions": 3000,
+      "avgConversions": 96,
+      "conversionRate": 3.2
+    },
+    "G Series Gaming": {
+      "avgDailySessions": 4500,
+      "avgConversions": 126,
+      "conversionRate": 2.8
+    },
+    "Business Solutions": {
+      "avgDailySessions": 1800,
+      "avgConversions": 74,
+      "conversionRate": 4.1
+    },
+    "Webcams": {
+      "avgDailySessions": 2500,
+      "avgConversions": 60,
+      "conversionRate": 2.4
+    },
+    "Other": {
+      "avgDailySessions": 2000,
+      "avgConversions": 38,
+      "conversionRate": 1.9
+    }
+  },
+  "pipelineStatus": [
+    {
+      "pipeline_name": "sales_etl",
+      "last_run": "2025-06-01 23:45:00",
+      "status": "success",
+      "records_processed": 45234,
+      "properties": {
+        "duration_seconds": 342,
+        "source": "transactional_db",
+        "destination": "warehouse",
+        "error_count": 0,
+        "warning_count": 2
+      }
+    },
+    {
+      "pipeline_name": "forecast_model_v2.3.1",
+      "last_run": "2025-06-02 00:15:00",
+      "status": "success",
+      "records_processed": 35,
+      "properties": {
+        "model_version": "2.3.1",
+        "categories_processed": 5,
+        "weeks_forecast": 5,
+        "mape": 2.8,
+        "confidence": 94.2
+      }
+    },
+    {
+      "pipeline_name": "session_analytics",
+      "last_run": "2025-06-02 00:30:00",
+      "status": "success",
+      "records_processed": 128453,
+      "properties": {
+        "unique_visitors": 98234,
+        "sessions_processed": 128453,
+        "conversion_events": 3847,
+        "avg_processing_time_ms": 2.3
+      }
+    },
+    {
+      "pipeline_name": "inventory_sync",
+      "last_run": "2025-06-02 01:00:00",
+      "status": "success",
+      "records_processed": 847,
+      "properties": {
+        "products_updated": 847,
+        "stock_warnings": 3,
+        "critical_items": ["MX-001", "G-001"],
+        "sync_source": "SAP"
+      }
+    },
+    {
+      "pipeline_name": "competitive_intelligence",
+      "last_run": "2025-06-02 02:00:00",
+      "status": "success",
+      "records_processed": 156,
+      "properties": {
+        "competitors_tracked": 5,
+        "price_changes_detected": 12,
+        "new_products_found": 3
+      }
+    },
+    {
+      "pipeline_name": "marketing_attribution",
+      "last_run": "2025-06-02 02:30:00",
+      "status": "success",
+      "records_processed": 23567,
+      "properties": {
+        "campaigns_processed": 48,
+        "attributed_revenue": 2341000,
+        "channels": ["google", "meta", "email"]
+      }
+    },
+    {
+      "pipeline_name": "customer_segmentation",
+      "last_run": "2025-06-02 03:00:00",
+      "status": "success",
+      "records_processed": 98234,
+      "properties": {
+        "segments_updated": 8,
+        "customers_reclassified": 1823,
+        "new_customers": 342
+      }
+    },
+    {
+      "pipeline_name": "realtime_transactions",
+      "last_run": "2025-06-02 03:45:00",
+      "status": "running",
+      "records_processed": 2341,
+      "properties": {
+        "status": "healthy",
+        "lag_seconds": 2.1,
+        "throughput_per_minute": 156,
+        "uptime_hours": 724
+      }
+    },
+    {
+      "pipeline_name": "web_analytics_stream",
+      "last_run": "2025-06-02 03:45:00",
+      "status": "running",
+      "records_processed": 8923,
+      "properties": {
+        "status": "healthy",
+        "events_per_second": 148,
+        "error_rate": 0.001,
+        "buffer_usage": 23.4
+      }
+    }
+  ],
+  "historicalAccuracy": [
+    {
+      "week": "W-4",
+      "category": "MX Series",
+      "forecast": 4150000,
+      "actual": 4080000,
+      "baseline": 4000000,
+      "mape": 1.72
+    },
+    {
+      "week": "W-4",
+      "category": "G Series Gaming",
+      "forecast": 4750000,
+      "actual": 4812000,
+      "baseline": 4650000,
+      "mape": 1.29
+    },
+    {
+      "week": "W-4",
+      "category": "Business Solutions",
+      "forecast": 3680000,
+      "actual": 3625000,
+      "baseline": 3600000,
+      "mape": 1.52
+    },
+    {
+      "week": "W-4",
+      "category": "Webcams",
+      "forecast": 2690000,
+      "actual": 2710000,
+      "baseline": 2650000,
+      "mape": 0.74
+    },
+    {
+      "week": "W-4",
+      "category": "Other",
+      "forecast": 1880000,
+      "actual": 1873000,
+      "baseline": 1850000,
+      "mape": 0.37
+    },
+    {
+      "week": "W-3",
+      "category": "MX Series",
+      "forecast": 4250000,
+      "actual": 4180000,
+      "baseline": 4100000,
+      "mape": 1.67
+    },
+    {
+      "week": "W-3",
+      "category": "G Series Gaming",
+      "forecast": 4890000,
+      "actual": 5012000,
+      "baseline": 4750000,
+      "mape": 2.44
+    },
+    {
+      "week": "W-3",
+      "category": "Business Solutions",
+      "forecast": 3720000,
+      "actual": 3690000,
+      "baseline": 3650000,
+      "mape": 0.81
+    },
+    {
+      "week": "W-3",
+      "category": "Webcams",
+      "forecast": 2730000,
+      "actual": 2695000,
+      "baseline": 2680000,
+      "mape": 1.30
+    },
+    {
+      "week": "W-3",
+      "category": "Other",
+      "forecast": 1910000,
+      "actual": 1923000,
+      "baseline": 1870000,
+      "mape": 0.68
+    },
+    {
+      "week": "W-2",
+      "category": "MX Series",
+      "forecast": 4320000,
+      "actual": 4285000,
+      "baseline": 4200000,
+      "mape": 0.82
+    },
+    {
+      "week": "W-2",
+      "category": "G Series Gaming",
+      "forecast": 4950000,
+      "actual": 4998000,
+      "baseline": 4850000,
+      "mape": 0.96
+    },
+    {
+      "week": "W-2",
+      "category": "Business Solutions",
+      "forecast": 3750000,
+      "actual": 3710000,
+      "baseline": 3700000,
+      "mape": 1.08
+    },
+    {
+      "week": "W-2",
+      "category": "Webcams",
+      "forecast": 2760000,
+      "actual": 2742000,
+      "baseline": 2700000,
+      "mape": 0.66
+    },
+    {
+      "week": "W-2",
+      "category": "Other",
+      "forecast": 1920000,
+      "actual": 1890000,
+      "baseline": 1880000,
+      "mape": 1.59
+    },
+    {
+      "week": "W-1",
+      "category": "MX Series",
+      "forecast": 4340000,
+      "actual": 4335000,
+      "baseline": 4250000,
+      "mape": 0.12
+    },
+    {
+      "week": "W-1",
+      "category": "G Series Gaming",
+      "forecast": 5000000,
+      "actual": 4995000,
+      "baseline": 4900000,
+      "mape": 0.10
+    },
+    {
+      "week": "W-1",
+      "category": "Business Solutions",
+      "forecast": 3830000,
+      "actual": 3825000,
+      "baseline": 3800000,
+      "mape": 0.13
+    },
+    {
+      "week": "W-1",
+      "category": "Webcams",
+      "forecast": 2690000,
+      "actual": 2685000,
+      "baseline": 2650000,
+      "mape": 0.19
+    },
+    {
+      "week": "W-1",
+      "category": "Other",
+      "forecast": 1890000,
+      "actual": 1895000,
+      "baseline": 1860000,
+      "mape": 0.26
+    }
+  ],
+  "dashboardMetadata": {
+    "weekTabs": [
+      { "view_type": "week_tab", "view_name": "W+1", "display_order": 1, "date_range": "Jun 2 - Jun 8, 2025", "is_focus": true },
+      { "view_type": "week_tab", "view_name": "W+2", "display_order": 2, "date_range": "Jun 9 - Jun 15, 2025" },
+      { "view_type": "week_tab", "view_name": "W+3", "display_order": 3, "date_range": "Jun 16 - Jun 22, 2025" },
+      { "view_type": "week_tab", "view_name": "W+4", "display_order": 4, "date_range": "Jun 23 - Jun 29, 2025" },
+      { "view_type": "week_tab", "view_name": "W+5", "display_order": 5, "date_range": "Jun 30 - Jul 6, 2025" },
+      { "view_type": "week_tab", "view_name": "Weekly Progress", "display_order": 6, "type": "summary_view" }
+    ],
+    "categoryTabs": [
+      { "view_type": "category_tab", "view_name": "MX Series", "display_order": 1, "color": "#0066CC" },
+      { "view_type": "category_tab", "view_name": "G Series Gaming", "display_order": 2, "color": "#00AA44" },
+      { "view_type": "category_tab", "view_name": "Business Solutions", "display_order": 3, "color": "#FF6600" },
+      { "view_type": "category_tab", "view_name": "Webcams", "display_order": 4, "color": "#AA00FF" },
+      { "view_type": "category_tab", "view_name": "Other", "display_order": 5, "color": "#666666" }
+    ]
+  }
+}

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <title>
+    Revenue Forecast (Dynamic) - Material Dashboard 2 PRO
+  </title>
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
+  <!-- Nucleo Icons -->
+  <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <!-- Material Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="assets/css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
+  <!-- Custom Dashboard Overrides -->
+  <link href="assets/css/custom-dashboard.css" rel="stylesheet" />
+  <style>
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #2196f3;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100">
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <main class="main-content position-relative max-height-vh-100 h-100">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-3 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
+      <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Revenue Forecast (Dynamic)</li>
+          </ol>
+          <h6 class="font-weight-bolder mb-0">Revenue Forecast - Dynamic Data Loading</h6>
+        </nav>
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <!-- Action buttons -->
+            <div class="d-flex align-items-center">
+              <button class="btn btn-outline-primary btn-sm mb-0 me-2" onclick="reloadData()" style="border-color: #2196f3; color: #2196f3;">
+                <i class="fas fa-redo me-1"></i> Reload Data
+              </button>
+              <button class="btn btn-outline-primary btn-sm mb-0 me-2" style="border-color: #2196f3; color: #2196f3;">
+                <i class="fas fa-calendar me-1"></i> Calendar Settings
+              </button>
+              <button class="btn btn-sm mb-0 text-white" onclick="exportData()" style="background-color: #4caf50; border: none;">
+                <i class="fas fa-download me-1"></i> Export JSON
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <div class="container-fluid py-2">
+      <div class="row">
+        <div class="col-12">
+          <!-- Error Alert (hidden by default) -->
+          <div class="alert alert-danger alert-dismissible fade show d-none" role="alert" id="errorAlert">
+            <strong>Error!</strong> <span id="errorMessage">Failed to load data.</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+          <!-- Header Card -->
+          <div class="card mb-4">
+            <div class="card-header pb-0 p-3">
+              <div class="row">
+                <div class="col-6 d-flex align-items-center">
+                  <h6 class="mb-0">High-level monthly/weekly forecast</h6>
+                </div>
+                <div class="col-6 text-end">
+                  <span class="badge bg-gradient-success">Data Loaded from JSON</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Week Selector Tabs -->
+          <div class="card">
+            <div class="card-header pb-0 px-3">
+              <ul class="nav nav-tabs nav-fill" role="tablist" id="weekTabs">
+                <!-- Week tabs will be dynamically generated -->
+              </ul>
+            </div>
+            <div class="card-body px-0 pb-2">
+              <div class="tab-content" id="weekTabContent">
+                <!-- Week content will be dynamically generated -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!--   Core JS Files   -->
+  <script src="assets/js/core/popper.min.js"></script>
+  <script src="assets/js/core/bootstrap.min.js"></script>
+  <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="assets/js/plugins/chartjs.min.js"></script>
+  
+  <!-- Load the data loader -->
+  <script src="dashboard-data-loader.js"></script>
+  
+  <script>
+    // Global variables
+    let dataLoader = null;
+    let dashboardData = null;
+    let charts = {};
+    
+    // Initialize the dashboard
+    async function initDashboard() {
+      try {
+        // Show loading overlay
+        document.getElementById('loadingOverlay').style.display = 'flex';
+        
+        // Initialize data loader and load data
+        dataLoader = new DashboardDataLoader();
+        dashboardData = await dataLoader.loadData();
+        
+        // Create the UI
+        createWeekTabs();
+        createWeekContent();
+        
+        // Initialize first tab
+        const firstTab = document.querySelector('.nav-link');
+        if (firstTab) {
+          firstTab.click();
+        }
+        
+        // Hide loading overlay
+        document.getElementById('loadingOverlay').style.display = 'none';
+        
+      } catch (error) {
+        console.error('Failed to initialize dashboard:', error);
+        showError('Failed to load dashboard data: ' + error.message);
+        document.getElementById('loadingOverlay').style.display = 'none';
+      }
+    }
+    
+    // Create week tabs
+    function createWeekTabs() {
+      const tabsContainer = document.getElementById('weekTabs');
+      const weekKeys = Object.keys(dashboardData.forecasts).sort();
+      
+      weekKeys.forEach((week, index) => {
+        const li = document.createElement('li');
+        li.className = 'nav-item';
+        
+        const a = document.createElement('a');
+        a.className = index === 0 ? 'nav-link active' : 'nav-link';
+        a.setAttribute('data-bs-toggle', 'tab');
+        a.setAttribute('href', `#${week}`);
+        a.setAttribute('role', 'tab');
+        a.setAttribute('aria-controls', week);
+        a.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+        
+        if (index === 0) {
+          a.innerHTML = `
+            <span class="font-weight-bold">${week}</span>
+            <span class="badge ms-2 text-white" style="background-color: #2196f3;">Focus</span>
+          `;
+        } else {
+          a.textContent = week;
+        }
+        
+        li.appendChild(a);
+        tabsContainer.appendChild(li);
+      });
+    }
+    
+    // Create week content
+    function createWeekContent() {
+      const contentContainer = document.getElementById('weekTabContent');
+      const weekKeys = Object.keys(dashboardData.forecasts).sort();
+      
+      weekKeys.forEach((week, index) => {
+        const weekData = dashboardData.forecasts[week];
+        const tabPane = document.createElement('div');
+        tabPane.className = index === 0 ? 'tab-pane fade show active' : 'tab-pane fade';
+        tabPane.id = week;
+        tabPane.setAttribute('role', 'tabpanel');
+        
+        tabPane.innerHTML = `
+          <div class="container-fluid">
+            <!-- Stats Row -->
+            <div class="row mb-4">
+              ${createStatsCards(weekData)}
+            </div>
+            
+            <!-- Chart Row -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header pb-0">
+                    <h6>Daily Revenue Forecast</h6>
+                  </div>
+                  <div class="card-body">
+                    <canvas id="chart-${week}" height="300"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Category Tabs -->
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header pb-0">
+                    <h6>Category Deep Dive</h6>
+                    <ul class="nav nav-tabs nav-fill mt-3" role="tablist">
+                      ${createCategoryTabs(week)}
+                    </ul>
+                  </div>
+                  <div class="card-body">
+                    <div class="tab-content">
+                      ${createCategoryContent(week)}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        contentContainer.appendChild(tabPane);
+        
+        // Create chart after DOM is ready
+        setTimeout(() => createChart(week), 100);
+      });
+    }
+    
+    // Create stats cards
+    function createStatsCards(weekData) {
+      const wow = weekData.stats.week_over_week_pct || 0;
+      const wowColor = wow >= 0 ? 'success' : 'danger';
+      const wowIcon = wow >= 0 ? 'fa-arrow-up' : 'fa-arrow-down';
+      
+      return `
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-header p-2 ps-3">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <p class="text-sm mb-0 text-capitalize">Total Revenue</p>
+                  <h4 class="mb-0">$${(weekData.stats.total_revenue / 1000000).toFixed(2)}M</h4>
+                </div>
+                <div class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg">
+                  <i class="material-symbols-rounded opacity-10">attach_money</i>
+                </div>
+              </div>
+            </div>
+            <hr class="dark horizontal my-0">
+            <div class="card-footer p-2 ps-3">
+              <p class="mb-0 text-sm"><span class="text-${wowColor} font-weight-bolder">
+                <i class="fa ${wowIcon} text-sm"></i> ${Math.abs(wow).toFixed(1)}%</span> vs last week
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-header p-2 ps-3">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <p class="text-sm mb-0 text-capitalize">Tywin Forecast</p>
+                  <h4 class="mb-0">$${(weekData.stats.tywin_forecast / 1000000).toFixed(2)}M</h4>
+                </div>
+                <div class="icon icon-md icon-shape bg-gradient-primary shadow-primary shadow text-center border-radius-lg">
+                  <i class="material-symbols-rounded opacity-10">insights</i>
+                </div>
+              </div>
+            </div>
+            <hr class="dark horizontal my-0">
+            <div class="card-footer p-2 ps-3">
+              <p class="mb-0 text-sm">Variance: <span class="text-success font-weight-bolder">
+                ${weekData.stats.tywin_variance_pct.toFixed(1)}%</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-header p-2 ps-3">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <p class="text-sm mb-0 text-capitalize">Categories</p>
+                  <h4 class="mb-0">${Object.keys(weekData.categories).length}</h4>
+                </div>
+                <div class="icon icon-md icon-shape bg-gradient-success shadow-success shadow text-center border-radius-lg">
+                  <i class="material-symbols-rounded opacity-10">category</i>
+                </div>
+              </div>
+            </div>
+            <hr class="dark horizontal my-0">
+            <div class="card-footer p-2 ps-3">
+              <p class="mb-0 text-sm">Top: <span class="text-success font-weight-bolder">
+                ${getTopCategory(weekData.categories)}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+          <div class="card">
+            <div class="card-header p-2 ps-3">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <p class="text-sm mb-0 text-capitalize">Events</p>
+                  <h4 class="mb-0">${countEvents(weekData.week_id)}</h4>
+                </div>
+                <div class="icon icon-md icon-shape bg-gradient-info shadow-info shadow text-center border-radius-lg">
+                  <i class="material-symbols-rounded opacity-10">event</i>
+                </div>
+              </div>
+            </div>
+            <hr class="dark horizontal my-0">
+            <div class="card-footer p-2 ps-3">
+              <p class="mb-0 text-sm">${getEventNames(weekData.week_id)}</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    // Helper functions
+    function getTopCategory(categories) {
+      let topCategory = '';
+      let maxRevenue = 0;
+      
+      Object.entries(categories).forEach(([name, data]) => {
+        const total = data.daily.reduce((sum, day) => sum + day.revenue, 0);
+        if (total > maxRevenue) {
+          maxRevenue = total;
+          topCategory = name;
+        }
+      });
+      
+      return topCategory;
+    }
+    
+    function countEvents(weekId) {
+      const events = dashboardData.calendar[weekId] || [];
+      return events.length;
+    }
+    
+    function getEventNames(weekId) {
+      const events = dashboardData.calendar[weekId] || [];
+      if (events.length === 0) return 'No major events';
+      return events.map(e => e.event_name).join(', ');
+    }
+    
+    // Create category tabs
+    function createCategoryTabs(week) {
+      const categories = Object.keys(dashboardData.forecasts[week].categories);
+      return categories.map((cat, index) => `
+        <li class="nav-item">
+          <a class="nav-link ${index === 0 ? 'active' : ''}" data-bs-toggle="tab" 
+             href="#${week}-${cat.replace(/\s+/g, '-')}" role="tab">
+            ${cat}
+          </a>
+        </li>
+      `).join('');
+    }
+    
+    // Create category content
+    function createCategoryContent(week) {
+      const categories = dashboardData.forecasts[week].categories;
+      return Object.entries(categories).map(([cat, data], index) => {
+        const catId = `${week}-${cat.replace(/\s+/g, '-')}`;
+        return `
+          <div class="tab-pane fade ${index === 0 ? 'show active' : ''}" 
+               id="${catId}" role="tabpanel">
+            <div class="row">
+              <div class="col-md-8">
+                <canvas id="chart-${catId}" height="250"></canvas>
+              </div>
+              <div class="col-md-4">
+                <h6 class="mb-3">Key Metrics</h6>
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Conversion Rate
+                    <span class="badge bg-gradient-primary rounded-pill">
+                      ${(data.metrics.conversion_rate * 100).toFixed(1)}%
+                    </span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Weekend Impact
+                    <span class="badge bg-gradient-info rounded-pill">
+                      ${data.metrics.weekend_impact > 0 ? '+' : ''}${(data.metrics.weekend_impact * 100).toFixed(0)}%
+                    </span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Peak Day
+                    <span class="badge bg-gradient-success rounded-pill">
+                      ${data.metrics.peak_day}
+                    </span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Top Product
+                    <span class="badge bg-gradient-warning rounded-pill">
+                      ${data.metrics.top_product}
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+    
+    // Create chart
+    function createChart(week) {
+      const weekData = dashboardData.forecasts[week];
+      const ctx = document.getElementById(`chart-${week}`);
+      if (!ctx) return;
+      
+      const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+      const datasets = [];
+      const colors = {
+        'MX Series': '#2196f3',
+        'G Series Gaming': '#4caf50',
+        'Business Solutions': '#ff9800',
+        'Webcams': '#9c27b0',
+        'Other': '#607d8b'
+      };
+      
+      Object.entries(weekData.categories).forEach(([catName, catData]) => {
+        datasets.push({
+          label: catName,
+          data: catData.daily.map(d => d.revenue),
+          backgroundColor: colors[catName] || '#666',
+          borderColor: colors[catName] || '#666',
+          borderWidth: 2,
+          tension: 0.4
+        });
+      });
+      
+      charts[week] = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: days,
+          datasets: datasets
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'bottom'
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+              callbacks: {
+                label: function(context) {
+                  return context.dataset.label + ': $' + (context.parsed.y / 1000).toFixed(0) + 'K';
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) {
+                  return '$' + (value / 1000).toFixed(0) + 'K';
+                }
+              }
+            }
+          }
+        }
+      });
+      
+      // Create category charts
+      Object.keys(weekData.categories).forEach(cat => {
+        createCategoryChart(week, cat);
+      });
+    }
+    
+    // Create category chart
+    function createCategoryChart(week, category) {
+      const catId = `${week}-${category.replace(/\s+/g, '-')}`;
+      const ctx = document.getElementById(`chart-${catId}`);
+      if (!ctx) return;
+      
+      const catData = dashboardData.forecasts[week].categories[category];
+      const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+      
+      charts[catId] = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: days,
+          datasets: [{
+            label: 'Daily Revenue',
+            data: catData.daily.map(d => d.revenue),
+            backgroundColor: 'rgba(33, 150, 243, 0.8)',
+            borderColor: 'rgba(33, 150, 243, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return '$' + (context.parsed.y / 1000).toFixed(1) + 'K';
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) {
+                  return '$' + (value / 1000).toFixed(0) + 'K';
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+    
+    // Reload data
+    async function reloadData() {
+      // Destroy existing charts
+      Object.values(charts).forEach(chart => chart.destroy());
+      charts = {};
+      
+      // Clear content
+      document.getElementById('weekTabs').innerHTML = '';
+      document.getElementById('weekTabContent').innerHTML = '';
+      
+      // Reinitialize
+      await initDashboard();
+    }
+    
+    // Export data
+    function exportData() {
+      const dataStr = JSON.stringify(dashboardData, null, 2);
+      const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+      
+      const exportFileDefaultName = 'dashboard-data.json';
+      
+      const linkElement = document.createElement('a');
+      linkElement.setAttribute('href', dataUri);
+      linkElement.setAttribute('download', exportFileDefaultName);
+      linkElement.click();
+    }
+    
+    // Show error
+    function showError(message) {
+      document.getElementById('errorMessage').textContent = message;
+      document.getElementById('errorAlert').classList.remove('d-none');
+    }
+    
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', initDashboard);
+  </script>
+
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="assets/js/material-dashboard.min.js?v=3.1.0"></script>
+</body>
+
+</html>

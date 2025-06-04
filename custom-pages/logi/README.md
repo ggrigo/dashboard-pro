@@ -7,6 +7,24 @@ This is a self-contained revenue forecast dashboard for Logi. All necessary file
 1. Open `revenue-forecast.html` in a web browser
 2. That's it! Everything is self-contained.
 
+## Development Log
+
+### 2025-01-06 - Dynamic Data Loading Implementation
+- Created `dashboard-data.json` - Extracted all forecast data from SQL statements in `mvp-dashboard-data.md`
+- Created `dashboard-data-loader.js` - JavaScript class for loading and accessing JSON data
+- Created `revenue-forecast-dynamic.html` - Fully dynamic version that reads from JSON
+- Added `dashboard-updater.js` - Simple script for micro-dynamic updates without full rebuild
+- Decision: Kept original static version as primary, dynamic loading as optional enhancement
+
+### Key Files Created:
+- `dashboard-data.json` (19KB) - Complete forecast data in JSON format
+- `dashboard-data-loader.js` (5KB) - Data loading utilities
+- `revenue-forecast-dynamic.html` - Dynamic dashboard version
+- `dashboard-updater.js` - Minimal update script
+
+### Architecture Decision:
+Chose simplicity over complexity - the static HTML with embedded data remains the primary approach. Dynamic loading available as an option but not required. This avoids over-engineering and keeps deployment simple.
+
 ## Deployment
 
 To deploy this dashboard:
@@ -19,7 +37,11 @@ To deploy this dashboard:
 
 ```
 logi/
-├── revenue-forecast.html        # Main dashboard page
+├── revenue-forecast.html          # Main dashboard page (static, production-ready)
+├── revenue-forecast-dynamic.html  # Dynamic version (loads from JSON)
+├── dashboard-data.json           # Extracted forecast data
+├── dashboard-data-loader.js      # JSON data loader class
+├── dashboard-updater.js          # Simple value updater
 ├── assets/
 │   ├── css/
 │   │   ├── material-dashboard.css   # Template styles
@@ -37,6 +59,7 @@ logi/
 │   │       ├── perfect-scrollbar.min.js
 │   │       └── smooth-scrollbar.min.js
 │   └── fonts/                       # Icon fonts
+├── *.md files                       # Documentation and data definitions
 └── README.md
 ```
 
@@ -79,3 +102,30 @@ The dashboard loads these from CDN:
 - This is a static dashboard (no backend required)
 - All data is embedded in the HTML file
 - Fully responsive design
+
+## Data Update Options
+
+### Option 1: Direct Edit (Simplest)
+Edit values directly in `revenue-forecast.html`:
+```javascript
+// Find and update values like:
+<h4 class="mb-0">$3.75M</h4>
+```
+
+### Option 2: Use Dashboard Updater
+1. Uncomment the script tag at the bottom of `revenue-forecast.html`
+2. Edit values in `dashboard-updater.js`
+3. Refresh the page
+
+### Option 3: Use Dynamic Version
+1. Edit `dashboard-data.json` with new values
+2. Open `revenue-forecast-dynamic.html`
+3. Data loads from JSON automatically
+
+## Documentation Files
+
+- `ai-collaboration-journey.md` - The story of how this dashboard was designed
+- `mvp-dashboard-data.md` - SQL schema and data generation scripts
+- `revenue-forecast-brief.md` - Business context and assumptions
+- `forecast-assumptions-template.md` - Template for documenting forecast assumptions
+- `EVENT_CALENDAR.md` - Major events that impact revenue
