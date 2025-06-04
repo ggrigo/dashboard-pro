@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Inline JavaScript</title>
+</head>
+<body>
+    <h1>Testing if inline JavaScript runs</h1>
+    <div id="output"></div>
+    
+    <script>
+        // This tests if inline scripts work
+        document.getElementById('output').innerHTML = '<h2>✓ Inline JavaScript is working!</h2>';
+        
+        // Test variable definition
+        const testData = {
+            message: "Variables can be defined"
+        };
+        
+        document.getElementById('output').innerHTML += '<p>✓ ' + testData.message + '</p>';
+        
+        // Test function definition
+        function testFunction() {
+            return "Functions can be defined";
+        }
+        
+        document.getElementById('output').innerHTML += '<p>✓ ' + testFunction() + '</p>';
+        
+        // Now let's check console
+        console.log('If you see this in console, JavaScript is running');
+        
+        // Add a button to test
+        document.getElementById('output').innerHTML += '<button onclick="alert(\'Click events work!\')">Click me to test events</button>';
+    </script>
+</body>
+</html>

@@ -43,6 +43,20 @@ window.addEventListener('load', function() {
             console.log('Event legend populated');
         }
         
+        // Handle Weekly Progress tab
+        const progressTab = document.querySelector('a[href="#weekly-progress"]');
+        if (progressTab) {
+            progressTab.addEventListener('shown.bs.tab', function() {
+                console.log('Weekly Progress tab shown');
+                if (typeof createWeeklyProgressChart === 'function') {
+                    createWeeklyProgressChart();
+                }
+                if (typeof createCategoryProgressCharts === 'function') {
+                    createCategoryProgressCharts();
+                }
+            });
+        }
+        
         // Also initialize charts for other weeks when their tabs are shown
         const weekTabs = document.querySelectorAll('a[href^="#week-"]');
         weekTabs.forEach(tab => {

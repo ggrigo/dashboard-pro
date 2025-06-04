@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minimal Chart Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Minimal Test - Does Chart.js Work?</h1>
+    <canvas id="myChart" width="400" height="200"></canvas>
+    
+    <h2>Console Output:</h2>
+    <div id="console" style="background: #f0f0f0; padding: 10px; font-family: monospace;"></div>
+    
+    <script>
+        const log = (msg) => {
+            document.getElementById('console').innerHTML += msg + '<br>';
+            console.log(msg);
+        };
+        
+        log('1. Script started');
+        
+        try {
+            log('2. Chart.js version: ' + Chart.version);
+            
+            const ctx = document.getElementById('myChart');
+            log('3. Canvas found: ' + (ctx !== null));
+            
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow'],
+                    datasets: [{
+                        label: 'Test Data',
+                        data: [12, 19, 3],
+                        backgroundColor: ['red', 'blue', 'yellow']
+                    }]
+                }
+            });
+            
+            log('4. Chart created successfully!');
+            
+            // Test our specific functions
+            log('5. Testing revenue-forecast.html functions...');
+            
+            // Mock the functions to test
+            window.forecastData = {'W+1': {revenue: 1000}};
+            window.formatCurrency = (amount) => '$' + amount;
+            window.generateCategoryDailyData = (week) => ({test: true});
+            
+            log('6. Mock functions created');
+            log('7. forecastData: ' + JSON.stringify(window.forecastData));
+            log('8. formatCurrency(1000): ' + window.formatCurrency(1000));
+            log('9. generateCategoryDailyData: ' + JSON.stringify(window.generateCategoryDailyData('W+1')));
+            
+        } catch (e) {
+            log('ERROR: ' + e.message);
+            log('Stack: ' + e.stack);
+        }
+    </script>
+</body>
+</html>

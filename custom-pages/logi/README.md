@@ -25,6 +25,15 @@ This is a self-contained revenue forecast dashboard for Logi. All necessary file
 ### Architecture Decision:
 Chose simplicity over complexity - the static HTML with embedded data remains the primary approach. Dynamic loading available as an option but not required. This avoids over-engineering and keeps deployment simple.
 
+### 2025-01-06 - Bug Fixes & Mobile Design Concepts
+- Fixed JavaScript error preventing Week 2-5 charts from loading (null reference checks)
+- Designed mobile UI improvements (not yet implemented):
+  - Tab dropdown selector for mobile (spreadsheet-style)
+  - Line charts instead of bar charts on mobile
+  - Swiper cards with dot indicators for stats
+- Created diagnostic tools for debugging JavaScript issues
+- Added COLLABORATION_NOTES.md for working style documentation
+
 ## Deployment
 
 To deploy this dashboard:

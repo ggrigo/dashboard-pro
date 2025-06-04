@@ -2890,21 +2890,12 @@
           
           if (weekData && pane.querySelector('.week-header')) {
             // Update header
-            const h4 = pane.querySelector('.week-header h4');
-            if (h4) h4.textContent = `Week ${weekKey}: ${weekData.weekRange}`;
-            
-            const revenue = pane.querySelector('.week-revenue');
-            if (revenue) revenue.textContent = formatCurrency(weekData.revenue);
-            
-            const change = pane.querySelector('.week-change');
-            if (change) {
-              change.textContent = weekData.change + ' vs last week';
-              change.className = 'text-sm font-weight-bold mb-0 ' + 
-                (weekData.change.startsWith('+') ? 'text-success' : 'text-danger');
-            }
-            
-            const variance = pane.querySelector('.tywin-variance');
-            if (variance) variance.textContent = weekData.vsTypin;
+            pane.querySelector('.week-header h4').textContent = `Week ${weekKey}: ${weekData.weekRange}`;
+            pane.querySelector('.week-revenue').textContent = formatCurrency(weekData.revenue);
+            pane.querySelector('.week-change').textContent = weekData.change + ' vs last week';
+            pane.querySelector('.week-change').className = 'text-sm font-weight-bold mb-0 ' + 
+              (weekData.change.startsWith('+') ? 'text-success' : 'text-danger');
+            pane.querySelector('.tywin-variance').textContent = weekData.vsTypin;
           }
         }
       });
@@ -3148,11 +3139,6 @@
       const ctx = document.getElementById(`cat-chart-${categoryId}`);
       if (!ctx || !data || !data.daily) return;
 
-      // Destroy existing chart if any
-      if (ctx.chart) {
-        ctx.chart.destroy();
-      }
-
       const chartData = {
         labels: data.daily.map(d => `${d.day}\n${d.date}`),
         datasets: [{
@@ -3164,7 +3150,7 @@
         }]
       };
 
-      ctx.chart = new Chart(ctx, {
+      new Chart(ctx, {
         type: 'bar',
         data: chartData,
         options: {

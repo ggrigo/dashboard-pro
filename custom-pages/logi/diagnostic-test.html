@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Dashboard Diagnostic Test</title>
+    <link href="assets/css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <style>
+        .test-result { padding: 10px; margin: 5px; border-radius: 5px; }
+        .pass { background: #d4edda; color: #155724; }
+        .fail { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Dashboard Diagnostic Test</h1>
+        <div id="results"></div>
+        
+        <!-- Test Elements -->
+        <div id="test-elements" style="display: none;">
+            <canvas id="test-chart"></canvas>
+            <div id="category-breakdown-1"></div>
+            <div id="event-legend-1"></div>
+        </div>
+    </div>
+
+    <!-- Load all dependencies -->
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap.min.js"></script>
+    <script src="assets/js/plugins/chartjs.min.js"></script>
+    <script src="assets/js/dashboard-config.js"></script>
+    
+    <script>
+        const results = document.getElementById('results');
+        
+        function addResult(test, passed, details = '') {
+            const div = document.createElement('div');
+            div.className = `test-result ${passed ? 'pass' : 'fail'}`;
+            div.innerHTML = `<strong>${test}:</strong> ${passed ? '✓ PASS' : '✗ FAIL'} ${details}`;
+            results.appendChild(div);
+        }
+        
+        function addInfo(message) {
+            const div = document.createElement('div');
+            div.className = 'test-result info';
+            div.innerHTML = `<strong>INFO:</strong> ${message}`;
+            results.appendChild(div);
+        }
+        
+        // Test 1: Check if libraries are loaded
+        addResult('Chart.js loaded', typeof Chart !== 'undefined');
+        addResult('Bootstrap loaded', typeof bootstrap !== 'undefined');
+        addResult('DashboardConfig loaded', typeof DashboardConfig !== 'undefined');
+        
+        // Test 2: Check if our functions exist
+        addResult('forecastData exists', typeof forecastData !== 'undefined');
+        addResult('formatCurrency exists', typeof formatCurrency !== 'undefined');
+        addResult('createDailyChart exists', typeof createDailyChart !== 'undefined');
+        addResult('generateCategoryDailyData exists', typeof generateCategoryDailyData !== 'undefined');
+        addResult('createCategoryProgressCharts exists', typeof createCategoryProgressCharts !== 'undefined');
+        
+        // Test 3: Check DOM elements
+        window.addEventListener('DOMContentLoaded', function() {
+            addInfo('=== DOM Tests ===');
+            
+            // Check for key elements
+            const elements = [
+                'category-breakdown-1',
+                'daily-chart-1',
+                'cat-chart-mx-1',
+                'weekly-progress-chart'
+            ];
+            
+            elements.forEach(id => {
+                const elem = document.getElementById(id);
+                addResult(`Element #${id}`, elem !== null, elem ? 'Found' : 'Missing');
+            });
+            
+            // Test 4: Try to create a simple chart
+            addInfo('=== Chart Creation Test ===');
+            try {
+                const ctx = document.getElementById('test-chart');
+                if (ctx && typeof Chart !== 'undefined') {
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Test'],
+                            datasets: [{
+                                label: 'Test Data',
+                                data: [100]
+                            }]
+                        }
+                    });
+                    addResult('Chart creation', true, 'Chart created successfully');
+                } else {
+                    addResult('Chart creation', false, 'Canvas or Chart.js missing');
+                }
+            } catch (e) {
+                addResult('Chart creation', false, e.message);
+            }
+            
+            // Test 5: Check for JavaScript errors
+            addInfo('=== JavaScript Errors ===');
+            window.addEventListener('error', function(e) {
+                addResult('JS Error', false, `${e.message} at line ${e.lineno}`);
+            });
+            
+            // Test 6: Check tab functionality
+            addInfo('=== Tab Click Test ===');
+            const tabLinks = document.querySelectorAll('a[data-bs-toggle="tab"]');
+            addResult('Tab links found', tabLinks.length > 0, `Found ${tabLinks.length} tabs`);
+            
+            // Test 7: Console errors
+            if (console.error.calls) {
+                addInfo(`Console errors: ${console.error.calls.length}`);
+            }
+        });
+        
+        // Test 8: Load the actual forecast data
+        addInfo('=== Loading Forecast Data ===');
+        const script = document.createElement('script');
+        script.src = 'revenue-forecast.html';
+        script.onerror = () => addResult('Load forecast HTML', false, 'Failed to load');
+        
+        // Copy forecast data if it exists in parent
+        if (window.parent && window.parent.forecastData) {
+            window.forecastData = window.parent.forecastData;
+            addResult('Forecast data copied', true);
+        }
+    </script>
+</body>
+</html>

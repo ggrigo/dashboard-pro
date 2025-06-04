@@ -1,37 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Debug Revenue Forecast</title>
+  <meta charset="utf-8" />
+  <title>Revenue Forecast - Debug Version</title>
+  <link href="assets/css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
 </head>
-<body>
-    <h1>Debugging Revenue Forecast Dashboard</h1>
-    <p>Open the browser console and reload revenue-forecast.html to see debug information.</p>
+<body class="bg-gray-100">
+  <div class="container">
+    <h1>Debug Version - Check Console</h1>
+    <div id="status"></div>
+  </div>
+
+  <script src="assets/js/core/bootstrap.min.js"></script>
+  <script src="assets/js/plugins/chartjs.min.js"></script>
+  <script src="assets/js/dashboard-config.js"></script>
+  
+  <script>
+    console.log('=== REVENUE FORECAST DEBUG ===');
+    const status = document.getElementById('status');
     
-    <script>
-    // This script will help debug the issue
-    console.log('Debug script loaded');
-    
-    // Check if required libraries are loaded
-    window.addEventListener('DOMContentLoaded', function() {
-        console.log('=== Dashboard Debug Info ===');
-        console.log('Chart.js loaded:', typeof Chart !== 'undefined');
-        console.log('Bootstrap loaded:', typeof bootstrap !== 'undefined');
-        console.log('DashboardConfig loaded:', typeof DashboardConfig !== 'undefined');
-        
-        // Check for required elements
-        setTimeout(() => {
-            console.log('Week 1 chart canvas:', document.getElementById('daily-chart-1'));
-            console.log('Category breakdown 1:', document.getElementById('category-breakdown-1'));
-            console.log('Tab panes found:', document.querySelectorAll('.tab-pane').length);
-            
-            // Check if data is defined
-            if (typeof forecastData !== 'undefined') {
-                console.log('Forecast data loaded:', Object.keys(forecastData));
-            } else {
-                console.log('ERROR: forecastData is not defined');
-            }
-        }, 1000);
-    });
-    </script>
+    try {
+      console.log('1. Starting JavaScript execution');
+      status.innerHTML += '<p>✓ JavaScript started</p>';
+      
+      // Test if we can define variables
+      const testVar = 'test';
+      console.log('2. Variable defined:', testVar);
+      status.innerHTML += '<p>✓ Variables can be defined</p>';
+      
+      // Test if we can define the forecast data
+      console.log('3. Defining forecastData...');
+      const forecastData = {
+        'W+1': {
+          weekRange: 'Jun 2 - Jun 8, 2025',
+          revenue: 18745000
+        }
+      };
+      console.log('4. forecastData defined:', forecastData);
+      status.innerHTML += '<p>✓ forecastData defined successfully</p>';
+      
+      // Test function definition
+      console.log('5. Defining formatCurrency...');
+      function formatCurrency(amount) {
+        if (amount >= 1000000) {
+          return '$' + (amount / 1000000).toFixed(2) + 'M';
+        }
+        return '$' + amount;
+      }
+      console.log('6. formatCurrency defined');
+      status.innerHTML += '<p>✓ formatCurrency defined</p>';
+      
+      // Test function call
+      const formatted = formatCurrency(1000000);
+      console.log('7. formatCurrency(1000000) =', formatted);
+      status.innerHTML += '<p>✓ formatCurrency works: ' + formatted + '</p>';
+      
+      console.log('8. All tests passed!');
+      status.innerHTML += '<h2 style="color: green;">✓ All JavaScript tests passed!</h2>';
+      
+    } catch (error) {
+      console.error('ERROR:', error);
+      status.innerHTML += '<h2 style="color: red;">✗ Error: ' + error.message + '</h2>';
+    }
+  </script>
 </body>
 </html>
