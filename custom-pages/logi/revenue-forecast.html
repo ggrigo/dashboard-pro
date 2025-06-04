@@ -2059,9 +2059,9 @@
             </div>
             <div class="collapse" id="dataIntegration">
               <div class="card-body pt-0">
-                <div class="alert alert-info mb-0" role="alert">
+                <div class="bg-transparent mb-0">
                   <div class="d-flex align-items-center">
-                    <i class="material-symbols-rounded me-3">info</i>
+                    <i class="material-symbols-rounded me-3 text-info">info</i>
                     <div>
                       <div class="d-flex align-items-center mb-2">
                         <div class="badge badge-dot me-3">
@@ -2443,6 +2443,67 @@
       return '$' + amount.toFixed(0);
     }
 
+    // Generate category daily data for any week
+    function generateCategoryDailyData(weekKey) {
+      const weekData = forecastData[weekKey];
+      if (!weekData) return null;
+      
+      const categoryData = {};
+      const categoryProportions = {
+        'MX Series': 0.25,
+        'G Series Gaming': 0.30,
+        'Business Solutions': 0.20,
+        'Webcams': 0.15,
+        'Other': 0.10
+      };
+      
+      // For each category, generate daily data
+      weekData.categories.forEach(cat => {
+        const proportion = categoryProportions[cat.name] || 0.20;
+        categoryData[cat.name] = {
+          daily: weekData.daily.map(day => ({
+            day: day.day,
+            date: day.date,
+            revenue: Math.round(day.revenue * proportion),
+            special: day.special
+          })),
+          metrics: {
+            avgDailyRevenue: Math.round(cat.revenue / 7),
+            peakDay: 'Friday',
+            weekendDrop: '-30.5%',
+            topProducts: getTopProductsForCategory(cat.name),
+            conversionRate: getConversionRateForCategory(cat.name)
+          }
+        };
+      });
+      
+      return categoryData;
+    }
+    
+    // Get top products for category
+    function getTopProductsForCategory(category) {
+      const products = {
+        'MX Series': ['MX Master 3S', 'MX Keys', 'MX Anywhere 3'],
+        'G Series Gaming': ['G PRO X SUPERLIGHT 2', 'G502 X', 'G915 TKL'],
+        'Business Solutions': ['Rally Bar', 'MeetUp 2', 'Tap IP'],
+        'Webcams': ['Brio 4K', 'C920s', 'StreamCam'],
+        'Other': ['iPad Accessories', 'Speakers', 'Presenters']
+      };
+      return products[category] || ['Product 1', 'Product 2', 'Product 3'];
+    }
+    
+    // Get conversion rate for category
+    function getConversionRateForCategory(category) {
+      const rates = {
+        'MX Series': '3.2%',
+        'G Series Gaming': '2.8%',
+        'Business Solutions': '5.1%',
+        'Webcams': '4.2%',
+        'Other': '2.1%'
+      };
+      return rates[category] || '3.0%';
+    }
+
     // Update week content
     function updateWeekContent(week) {
       const data = forecastData[week];
@@ -2672,6 +2733,28 @@
               populateCategoryBreakdown(weekNum, forecastData[currentWeek]);
               createDailyChart(weekNum, forecastData[currentWeek]);
               populateEventLegend(weekNum, forecastData[currentWeek]);
+              
+              // Generate and create category charts for the selected week
+              const weekCategoryData = generateCategoryDailyData(currentWeek);
+              if (weekCategoryData) {
+                // Create charts for each category
+                Object.keys(weekCategoryData).forEach(catName => {
+                  let catId = '';
+                  if (catName === 'MX Series') {
+                    catId = 'mx';
+                  } else if (catName === 'G Series Gaming') {
+                    catId = 'gaming';
+                  } else if (catName === 'Business Solutions') {
+                    catId = 'business';
+                  } else if (catName === 'Webcams') {
+                    catId = 'webcams';
+                  } else if (catName === 'Other') {
+                    catId = 'other';
+                  }
+                  createCategoryChart(`${catId}-${weekNum}`, weekCategoryData[catName]);
+                  populateEventLegend(`${catId}-${weekNum}`, weekCategoryData[catName], true);
+                });
+              }
             }
           }
         });

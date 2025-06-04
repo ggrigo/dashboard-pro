@@ -55,6 +55,30 @@ window.addEventListener('load', function() {
                     populateCategoryBreakdown(weekNum, forecastData[weekKey]);
                     createDailyChart(weekNum, forecastData[weekKey]);
                     populateEventLegend(weekNum, forecastData[weekKey]);
+                    
+                    // Generate and create category charts
+                    if (typeof generateCategoryDailyData === 'function') {
+                        const weekCategoryData = generateCategoryDailyData(weekKey);
+                        if (weekCategoryData) {
+                            console.log('Creating category charts for', weekKey);
+                            Object.keys(weekCategoryData).forEach(catName => {
+                                let catId = '';
+                                if (catName === 'MX Series') {
+                                    catId = 'mx';
+                                } else if (catName === 'G Series Gaming') {
+                                    catId = 'gaming';
+                                } else if (catName === 'Business Solutions') {
+                                    catId = 'business';
+                                } else if (catName === 'Webcams') {
+                                    catId = 'webcams';
+                                } else if (catName === 'Other') {
+                                    catId = 'other';
+                                }
+                                createCategoryChart(`${catId}-${weekNum}`, weekCategoryData[catName]);
+                                populateEventLegend(`${catId}-${weekNum}`, weekCategoryData[catName], true);
+                            });
+                        }
+                    }
                 }
             });
         });
